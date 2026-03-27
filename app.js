@@ -15,6 +15,34 @@ function mapearCoordenadas(){
     
 };
 
+function moverPiezas(){
+
+    var tab = mapearCoordenadas();
+    const chess = document.getElementById('tab');
+
+    chess.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('text/plain', e.target.id);
+    });
+            
+    for(var i = 0 ; i<8 ; i++){
+        for(var v = 0 ; v<8 ; v++){
+            tab[i][v].addEventListener('dragover', e =>{
+                e.preventDefault();
+            });
+            tab[i][v].addEventListener('drop', e =>{
+                e.preventDefault();
+                if (e.currentTarget.children.length === 0) {
+                    const id = e.dataTransfer.getData('text/plain');
+                    const pieza = document.getElementById(id);
+                    e.currentTarget.appendChild(pieza);
+                }else{
+                    alert('No puedes mover la pieza alli')
+                }
+            });
+        }
+    }
+}
+
 function ubicacionPeones(){
     
     var tab = mapearCoordenadas();
