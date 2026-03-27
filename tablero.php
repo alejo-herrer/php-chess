@@ -21,14 +21,14 @@
                 echo "<div class = 'col-tab'>";
                 foreach($col as $v=>$fil){
 
-                   echo ($fil == 'B')  ? "<div class='cas-blanca' data-x='$i' data-y='$v'></div>" : "<div class='cas-negra' data-x='$i' data-y='$v'></div>";
+                   echo ($fil == 'B')  ? "<div class='cas-blanca' data-x='$i' data-y='$v' id='cel-$i-$v' ></div>" : "<div class='cas-negra' data-x='$i' data-y='$v' id='cel-$i-$v'></div>";
                    
-                    
                 }
                 echo "</div>";
             }
 
         }
+
         
 
     }
