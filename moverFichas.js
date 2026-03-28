@@ -13,11 +13,11 @@ export function moverPiezas(tab,estado,movPermX,movPermY){
             });
             tab[i][v].addEventListener('drop', e =>{
                 e.preventDefault();
-                if (e.currentTarget.children.length === 0 && estado === 0 &&  movPermY.includes(Number(e.currentTarget.dataset.x)) && movPermX.includes(Number(e.currentTarget.dataset.y))) {
+                if (e.currentTarget.children.length === 0 && estado === 0 &&  movPermY.includes(Number(e.currentTarget.dataset.x)-v) && movPermX.includes(Number(e.currentTarget.dataset.y)-i)) {
                     const id = e.dataTransfer.getData('text/plain');
                     const pieza = document.getElementById(id);
                     e.currentTarget.appendChild(pieza);
-                }else if (estado === 1 && e.currentTarget && movPermY.includes(Number(e.currentTarget.dataset.x)) && movPermX.includes(Number(e.currentTarget.dataset.y))){
+                }else if (estado === 1 && e.currentTarget && movPermY.includes(Number(e.currentTarget.dataset.x)-v) && movPermX.includes(Number(e.currentTarget.dataset.y)-i)){
                     const id = e.dataTransfer.getData('text/plain');
                     const pieza = document.getElementById(id);
                     e.currentTarget.textContent= "";
@@ -40,8 +40,8 @@ export function movPeon(tab){
             const pieza = tab[j][v].querySelector('img');
             if(pieza && (pieza.id === `peon-blan-${v}` || pieza.id ===`peon-neg-${v}`)){
 
-                var movPermX = [j, j+1, j+2];
-                var movPermY = [v];
+                var movPermX = [0, 1, 2];
+                var movPermY = [0];
 
                 movPerm[0] = movPermX;
                 movPerm[1] = movPermY;
