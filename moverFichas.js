@@ -13,10 +13,13 @@ export function moverPiezas(tab,estado,movPermX,movPermY){
             });
             tab[i][v].addEventListener('drop', e =>{
                 e.preventDefault();
-                if (e.currentTarget.children.length === 0 && estado === 0 &&  movPermY.includes(Number(e.currentTarget.dataset.x)-v) && movPermX.includes(Number(e.currentTarget.dataset.y)-i)) {
+                if (e.currentTarget.children.length === 0 && estado === 0 ) {
                     const id = e.dataTransfer.getData('text/plain');
                     const pieza = document.getElementById(id);
+                    if(Number(e.currentTarget.dataset.x))
                     e.currentTarget.appendChild(pieza);
+                    console.log(v);
+                    console.log(Number(e.currentTarget.dataset.x));
                 }else if (estado === 1 && e.currentTarget && movPermY.includes(Number(e.currentTarget.dataset.x)-v) && movPermX.includes(Number(e.currentTarget.dataset.y)-i)){
                     const id = e.dataTransfer.getData('text/plain');
                     const pieza = document.getElementById(id);

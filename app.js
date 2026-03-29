@@ -5,4 +5,4 @@ import * as moverFichas from "./moverFichas.js";
 const tab = tablero.mapearCoordenadas();
 fichas.colocarPiezas(tab);
 var movPerm = moverFichas.movPeon(tab);
-moverFichas.moverPiezas(tab, 1, movPerm[0], movPerm[1]);
+moverFichas.moverPiezas(tab, 0, movPerm[0], movPerm[1]);
