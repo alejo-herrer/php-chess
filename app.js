@@ -1,23 +1,22 @@
-function mapearCoordenadas(){
+import * as coordenadas from "./tablero.js";
+import * as piezas from "./ficha.js";
 
-    var tab = [];
+    var tab = coordenadas.mapearCoordenadas();
+
+function crearFichas(){
+
+    var fichasNegras =[];
+    var fichasBlancas = [];
 
     for(var i = 0 ; i<8 ; i++){
-        tab[i] = [];
-        for(var v = 0 ; v<8 ; v++){
-            tab[i][v] = document.getElementById(`cel-${i}-${v}`);
-            //console.log(tab[i][v].getAttribute("data-x"));
-            //console.log(tab[i][v].getAttribute("data-y"));
-        }
+        fichasNegras[i]=new piezas.Peon(negro,1,i);
+        fichasBlancas[i]=new piezas.Peon(negro,1,i);
     }
 
-    return tab;
+}
+/*function ubicacionPeones(){
     
-};
-
-function ubicacionPeones(){
-    
-    var tab = mapearCoordenadas();
+    var tab = coordenadas.mapearCoordenadas();
 
     for(var i = 0 ; i<8 ; i++){
         tab[i][1].innerHTML = `<img src='img/neg-peon.png' draggable='true' class='ficha' id='peon-neg-${i}'></img>`;
@@ -28,7 +27,7 @@ function ubicacionPeones(){
 
 function ubicacionTorres(){
     
-    var tab = mapearCoordenadas();
+    var tab = coordenadas.mapearCoordenadas();
     let cont = 0;
     for(var i = 0 ; i<8 ; i++){
         if(i == 0 || i == 7){
@@ -42,7 +41,7 @@ function ubicacionTorres(){
 
 function ubicacionAlfil(){
     
-    var tab = mapearCoordenadas();
+    var tab = coordenadas.mapearCoordenadas();
     let cont = 0;
     for(var i = 0 ; i<8 ; i++){
         if(i == 2 || i == 5){
@@ -83,4 +82,4 @@ function ubicacionReina(){
             tab[4][0].innerHTML = `<img src='img/neg-rein.png' draggable='true' class='ficha' id='rein-neg'></img>`;
             tab[3][7].innerHTML = `<img src='img/blan-rein.png' draggable='true' class='ficha' id='rein-blan'></img>`;
 
-}
+}*/
