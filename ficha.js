@@ -12,7 +12,7 @@ class Ficha {
 
 }
 
-class Peon extends Ficha{
+export class Peon extends Ficha{
 
     constructor(color,x,y){
         super(color,x,y);
@@ -31,7 +31,7 @@ class Peon extends Ficha{
         } 
 
         for(let diagx of [-1,1]){
-            const movx = this.x+movx;
+            const movx = this.x+diagx;
             const movy = this.y+dir;
 
             if(tab[movx][movy].color != this.color){
@@ -39,9 +39,43 @@ class Peon extends Ficha{
             }
         }
 
-        return movimiento;
+        return movimiento;  
 
-        
     }
 
 }
+
+export class Alfil extends Ficha{
+
+    movPiez(tab){
+        var movimiento = [];
+
+        var direcciones = [[1,1],[-1,1],[1,-1],[-1,-1]];
+
+        for(let dir of direcciones){
+            for(let i = 1; i<8 ; i++){
+                let x = this.x + i * dir[0];
+                let y = this.y + i * dir[1];  
+                
+                if (x < 0 || x > 7 || y < 0 || y > 7) break;
+
+                let pieza = tab[x]?.[y];
+
+                if(pieza === null){
+                    movimiento.push([x,y,0]);
+                } else {
+                    if(pieza.color !== this.color){
+                        movimiento.push([x,y,1]);
+                    }
+                    break;
+                }
+            }
+        }
+
+        return movimiento;  
+
+    }
+
+}
+
+
