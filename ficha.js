@@ -25,7 +25,7 @@ export class Peon extends Ficha{
 
         if(tab[this.x]?.[this.y+dir] === null){
             movimiento.push([this.x,this.y+dir,0]);
-            if(this.primermovimiento = true && tab[this.x]?.[this.y+2*dir] === null){
+            if(this.primermovimiento && tab[this.x]?.[this.y+2*dir] === null){
                movimiento.push([this.x,this.y+2*dir,0]);
             }
         } 
@@ -34,7 +34,9 @@ export class Peon extends Ficha{
             const movx = this.x+diagx;
             const movy = this.y+dir;
 
-            if(tab[movx][movy].color != this.color){
+            let pieza = tab[movx]?.[movy];
+
+            if(pieza != null && pieza.color != this.color){
                 movimiento.push([movx,movy,1]);
             }
         }
@@ -45,7 +47,7 @@ export class Peon extends Ficha{
 
 }
 
-export class PiezDes extends Ficha{
+export class PiezDeslizante extends Ficha{
 
     constructor(color,x,y,dir){
         super(color,x,y);
@@ -82,7 +84,7 @@ export class PiezDes extends Ficha{
 
 }
 
-export class Alfil extends PiezDes{
+export class Alfil extends PiezDeslizante{
 
     constructor(color,x,y){
         super(color,x,y,[[1,1],[-1,1],[1,-1],[-1,-1]]);
@@ -90,7 +92,7 @@ export class Alfil extends PiezDes{
 
 }
 
-export class Torre extends PiezDes{
+export class Torre extends PiezDeslizante{
 
     constructor(color,x,y){
         super(color,x,y,[[1,0],[-1,0],[0,1],[0,-1]]);
@@ -98,7 +100,7 @@ export class Torre extends PiezDes{
 
 }
 
-export class Reina extends PiezDes{
+export class Reina extends PiezDeslizante{
 
     constructor(color,x,y){
         super(color,x,y,[[1,0],[-1,0],[0,1],[0,-1],[1,1],[-1,1],[1,-1],[-1,-1]]);
@@ -106,10 +108,11 @@ export class Reina extends PiezDes{
 
 }
 
-export class Rey extends PiezDes{
+export class PiezaNoDeslizante extends Ficha{
 
-    constructor(color,x,y){
-        super(color,x,y,[[1,0],[-1,0],[0,1],[0,-1],[1,1],[-1,1],[1,-1],[-1,-1]]);
+    constructor(color,x,y,dir){
+        super(color,x,y);
+        this.dir = dir;
     }
 
     movPiez(tab){
@@ -138,5 +141,20 @@ export class Rey extends PiezDes{
 
 }
 
+export class Rey extends PiezaNoDeslizante{
+
+    constructor(color,x,y){
+        super(color,x,y,[[1,0],[-1,0],[0,1],[0,-1],[1,1],[-1,1],[1,-1],[-1,-1]]);
+    }
+
+}
+
+export class Caballo extends PiezaNoDeslizante{
+
+    constructor(color,x,y){
+        super(color,x,y,[[-2,1],[-2,-1],[2,1],[2,-1],[1,2],[-1,2],[1,-2],[-1,-2]]);
+    }
+
+}
 
 
