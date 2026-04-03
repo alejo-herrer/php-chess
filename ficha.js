@@ -45,14 +45,17 @@ export class Peon extends Ficha{
 
 }
 
-export class Alfil extends Ficha{
+export class PiezDes extends Ficha{
+
+    constructor(color,x,y,dir){
+        super(color,x,y);
+        this.dir = dir;
+    }
 
     movPiez(tab){
         var movimiento = [];
 
-        var direcciones = [[1,1],[-1,1],[1,-1],[-1,-1]];
-
-        for(let dir of direcciones){
+        for(let dir of this.dir){
             for(let i = 1; i<8 ; i++){
                 let x = this.x + i * dir[0];
                 let y = this.y + i * dir[1];  
@@ -76,6 +79,64 @@ export class Alfil extends Ficha{
 
     }
 
+
 }
+
+export class Alfil extends PiezDes{
+
+    constructor(color,x,y){
+        super(color,x,y,[[1,1],[-1,1],[1,-1],[-1,-1]]);
+    }
+
+}
+
+export class Torre extends PiezDes{
+
+    constructor(color,x,y){
+        super(color,x,y,[[1,0],[-1,0],[0,1],[0,-1]]);
+    }
+
+}
+
+export class Reina extends PiezDes{
+
+    constructor(color,x,y){
+        super(color,x,y,[[1,0],[-1,0],[0,1],[0,-1],[1,1],[-1,1],[1,-1],[-1,-1]]);
+    }
+
+}
+
+export class Rey extends PiezDes{
+
+    constructor(color,x,y){
+        super(color,x,y,[[1,0],[-1,0],[0,1],[0,-1],[1,1],[-1,1],[1,-1],[-1,-1]]);
+    }
+
+    movPiez(tab){
+        var movimiento = [];
+
+        for(let dir of this.dir){
+            
+            let x = this.x + dir[0];
+            let y = this.y + dir[1];  
+            
+            if (x < 0 || x > 7 || y < 0 || y > 7) continue;
+            let pieza = tab[x]?.[y];
+            if(pieza === null){
+                movimiento.push([x,y,0]);
+            } else {
+                if(pieza.color !== this.color){
+                    movimiento.push([x,y,1]);
+                }
+            }
+            
+        }
+
+        return movimiento;  
+
+    }
+
+}
+
 
 
