@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import * as tablero from "./tablero.js";
-import * as fichas from "./fichas.js";
-import * as moverFichas from "./moverFichas.js";
-
-const tab = tablero.mapearCoordenadas();
-fichas.colocarPiezas(tab);
-var movPerm = moverFichas.movPeon(tab);
-moverFichas.moverPiezas(tab, 0, movPerm[0], movPerm[1]);
-=======
 import * as piezas from "./ficha.js";
 
 class Partida {
@@ -186,5 +176,3 @@ class Partida {
 var partida = new Partida('Juanito','Pedrito',1);
 partida.empezarPartida();
 
-
->>>>>>> Chess_1.0
