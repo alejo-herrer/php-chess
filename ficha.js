@@ -1,6 +1,7 @@
 class Ficha {
 
     constructor(color, x, y){
+        this.tipo = 'tipo';
         this.color = color;
         this.x = x;
         this.y = y;
@@ -16,6 +17,7 @@ export class Peon extends Ficha{
 
     constructor(color,x,y){
         super(color,x,y);
+        this.tipo = 'Peon';
         this.primermovimiento = true;
     }
 
@@ -88,6 +90,7 @@ export class Alfil extends PiezDeslizante{
 
     constructor(color,x,y){
         super(color,x,y,[[1,1],[-1,1],[1,-1],[-1,-1]]);
+        this.tipo = 'Alfil';
     }
 
 }
@@ -96,6 +99,7 @@ export class Torre extends PiezDeslizante{
 
     constructor(color,x,y){
         super(color,x,y,[[1,0],[-1,0],[0,1],[0,-1]]);
+        this.tipo = 'Torre';
     }
 
 }
@@ -104,6 +108,7 @@ export class Reina extends PiezDeslizante{
 
     constructor(color,x,y){
         super(color,x,y,[[1,0],[-1,0],[0,1],[0,-1],[1,1],[-1,1],[1,-1],[-1,-1]]);
+        this.tipo = 'Reina';
     }
 
 }
@@ -145,6 +150,7 @@ export class Rey extends PiezaNoDeslizante{
 
     constructor(color,x,y){
         super(color,x,y,[[1,0],[-1,0],[0,1],[0,-1],[1,1],[-1,1],[1,-1],[-1,-1]]);
+        this.tipo = 'Rey';
     }
 
 }
@@ -153,6 +159,7 @@ export class Caballo extends PiezaNoDeslizante{
 
     constructor(color,x,y){
         super(color,x,y,[[-2,1],[-2,-1],[2,1],[2,-1],[1,2],[-1,2],[1,-2],[-1,-2]]);
+        this.tipo = 'Caballo';
     }
 
 }

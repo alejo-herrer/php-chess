@@ -1,85 +1,65 @@
-import * as coordenadas from "./tablero.js";
 import * as piezas from "./ficha.js";
 
-    var tab = coordenadas.mapearCoordenadas();
+function crearTablero(){
 
-function crearFichas(){
-
-    var fichasNegras =[];
-    var fichasBlancas = [];
+    var tab = [];
 
     for(var i = 0 ; i<8 ; i++){
-        fichasNegras[i]=new piezas.Peon(negro,1,i);
-        fichasBlancas[i]=new piezas.Peon(negro,1,i);
+        tab[i] = [];
+        for(var v = 0 ; v<8 ; v++){
+            tab[i][v] = null;
+        }
     }
 
-}
-/*function ubicacionPeones(){
-    
-    var tab = coordenadas.mapearCoordenadas();
-
     for(var i = 0 ; i<8 ; i++){
-        tab[i][1].innerHTML = `<img src='img/neg-peon.png' draggable='true' class='ficha' id='peon-neg-${i}'></img>`;
-        tab[i][6].innerHTML = `<img src='img/blan-peon.png' draggable='true' class='ficha' id='peon-blan-${i}'></img>`;
-    }
 
-}
+        tab[1][i]= new piezas.Peon('negro',i,1);
+        tab[6][i]= new piezas.Peon('blanco',i,6);
 
-function ubicacionTorres(){
-    
-    var tab = coordenadas.mapearCoordenadas();
-    let cont = 0;
-    for(var i = 0 ; i<8 ; i++){
         if(i == 0 || i == 7){
-            tab[i][0].innerHTML = `<img src='img/neg-torr.png' draggable='true' class='ficha' id='torr-neg-${cont}'></img>`;
-            tab[i][7].innerHTML = `<img src='img/blan-torr.png' draggable='true' class='ficha' id='torr-blan-${cont}'></img>`;
-            cont++;
+            tab[0][i] = new piezas.Torre('negro',i,0);
+            tab[7][i] = new piezas.Torre('blanco',i,7); 
         }
-    }
 
-}
-
-function ubicacionAlfil(){
-    
-    var tab = coordenadas.mapearCoordenadas();
-    let cont = 0;
-    for(var i = 0 ; i<8 ; i++){
-        if(i == 2 || i == 5){
-            tab[i][0].innerHTML = `<img src='img/neg-alf.png' draggable='true' class='ficha' id='alf-neg-${cont}'></img>`;
-            tab[i][7].innerHTML = `<img src='img/blan-alf.png' draggable='true' class='ficha' id='alf-blan-${cont}'></img>`;
-            cont++;
-        }
-    }
-
-}
-
-function ubicacionCaballo(){
-    
-    var tab = mapearCoordenadas();
-    let cont = 0;
-    for(var i = 0 ; i<8 ; i++){
         if(i == 1 || i == 6){
-            tab[i][0].innerHTML = `<img src='img/neg-cab.png' draggable='true' class='ficha' id='cab-neg-${cont}'></img>`;
-            tab[i][7].innerHTML = `<img src='img/blan-cab.png' draggable='true' class='ficha' id='cab-blan-${cont}'></img>`;
-            cont++;
+            tab[0][i] = new piezas.Caballo('negro',i,0);
+            tab[7][i] = new piezas.Caballo('blanco',i,7); 
         }
+
+        if(i == 2 || i == 5){
+            tab[0][i] = new piezas.Alfil('negro',i,0);
+            tab[7][i] = new piezas.Alfil('blanco',i,7); 
+        }
+
     }
 
+    tab[0][4] = new piezas.Rey('negro',3,0);
+    tab[7][4] = new piezas.Rey('blanco',4,7); 
+    tab[0][3] = new piezas.Reina('negro',4,0);
+    tab[7][3] = new piezas.Reina('blanco',3,7); 
+
+    return tab;
+
 }
 
-function ubicacionRey(){
-    
-    var tab = mapearCoordenadas();
+console.log(crearTablero());
 
-            tab[3][0].innerHTML = `<img src='img/neg-rey.png' draggable='true' class='ficha' id='rey-neg'></img>`;
-            tab[4][7].innerHTML = `<img src='img/blan-rey.png' draggable='true' class='ficha' id='rey-blan'></img>`;
+function renderizarTab(tab){
+
+    for(let casX of tab){
+        for(let cel of casX){
+            if(cel !== null){
+                let celda = document.getElementById(`cel-${cel.x}-${cel.y}`);
+                let img = document.createElement('img')
+                img.style = 'height: 100%; width: 100%; object-fit:cover;'
+                img.src = `img/${cel.color}${cel.tipo}.png`;
+                celda.appendChild(img);
+            }
+        }
+    }
 }
 
-function ubicacionReina(){
-    
-    var tab = mapearCoordenadas();
 
-            tab[4][0].innerHTML = `<img src='img/neg-rein.png' draggable='true' class='ficha' id='rein-neg'></img>`;
-            tab[3][7].innerHTML = `<img src='img/blan-rein.png' draggable='true' class='ficha' id='rein-blan'></img>`;
+var tableroAjedrez = crearTablero();
+renderizarTab(tableroAjedrez);
 
-}*/
