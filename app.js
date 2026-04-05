@@ -175,5 +175,3 @@ class Partida {
 
 var partida = new Partida('Juanito','Pedrito',1);
 partida.empezarPartida();
-
-

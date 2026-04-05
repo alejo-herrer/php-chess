@@ -15,14 +15,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 </head>
-<body>
+<body >
     
     <div class="container">
         <div class="row justify-content-center align-items-center g-2 py-5">
             <div class="col-4"></div>
             <div class="col-4  ">
         
-                <div id='tab' class='Tablero'>
+                <div class='Tablero' id='tab'>
                     <?php $chess->imprimirTablero(); ?>
                 </div>
 
