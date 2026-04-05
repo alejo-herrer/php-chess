@@ -22,7 +22,7 @@
             <div class="col-4"></div>
             <div class="col-4  ">
         
-                <div class='Tablero'>
+                <div id='tab' class='Tablero'>
                     <?php $chess->imprimirTablero(); ?>
                 </div>
 
